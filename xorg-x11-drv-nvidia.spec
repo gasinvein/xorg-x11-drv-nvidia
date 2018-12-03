@@ -17,10 +17,11 @@
 %global	       debug_package %{nil}
 %global	       __strip /bin/true
 
+%global        baseversion          415.18
 
 Name:            xorg-x11-drv-nvidia
 Epoch:           3
-Version:         415.18
+Version:         415.18.04
 Release:         1%{?dist}
 Summary:         NVIDIA's proprietary display driver for NVIDIA graphic cards
 
@@ -57,11 +58,11 @@ Requires(post):   ldconfig
 Requires(postun): ldconfig
 Requires(post):   grubby
 Requires:         which
-Requires:         nvidia-settings%{?_isa} = %{?epoch}:%{version}
+Requires:         nvidia-settings%{?_isa} = %{?epoch}:%{baseversion}
 %if 0%{?fedora}
-Suggests:         nvidia-xconfig%{?_isa} = %{?epoch}:%{version}
+Suggests:         nvidia-xconfig%{?_isa} = %{?epoch}:%{baseversion}
 %else
-Requires:         nvidia-xconfig%{?_isa} = %{?epoch}:%{version}
+Requires:         nvidia-xconfig%{?_isa} = %{?epoch}:%{baseversion}
 %endif
 
 Requires:        %{_nvidia_serie}-kmod >= %{?epoch}:%{version}
@@ -105,15 +106,15 @@ This package provides the development files of the %{name} package.
 Summary:         CUDA driver for %{name}
 Requires:        %{_nvidia_serie}-kmod >= %{?epoch}:%{version}
 Requires:        %{name}-cuda-libs%{?_isa} = %{?epoch}:%{version}-%{release}
-Requires:        nvidia-persistenced%{?_isa} = %{?epoch}:%{version}
+Requires:        nvidia-persistenced%{?_isa} = %{?epoch}:%{baseversion}
 %if 0%{?fedora}
-Suggests:        nvidia-modprobe%{?_isa} = %{?epoch}:%{version}
+Suggests:        nvidia-modprobe%{?_isa} = %{?epoch}:%{baseversion}
 # Boolean dependencies are only fedora
 %ifarch x86_64
 Requires:        (%{name}-cuda-libs(x86-32) = %{?epoch}:%{version}-%{release} if mesa-libGL(x86-32))
 %endif
 %else
-Requires:        nvidia-modprobe%{?_isa} = %{?epoch}:%{version}
+Requires:        nvidia-modprobe%{?_isa} = %{?epoch}:%{baseversion}
 %endif
 Requires:        ocl-icd%{?_isa}
 Requires:        opencl-filesystem
@@ -763,4 +764,3 @@ fi ||:
 
 * Fri Nov 18 2016 leigh scott <leigh123linux@googlemail.com> - 1:375.20-1
 - Update to 375.20 release
-
