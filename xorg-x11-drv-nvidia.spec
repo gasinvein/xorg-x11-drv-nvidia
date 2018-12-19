@@ -20,7 +20,7 @@
 Name:            xorg-x11-drv-nvidia
 Epoch:           3
 Version:         415.23
-Release:         4%{?dist}
+Release:         1%{?dist}
 Summary:         NVIDIA's proprietary display driver for NVIDIA graphic cards
 
 License:         Redistributable, no modification permitted
@@ -150,7 +150,11 @@ Requires:        libglvnd-egl%{?_isa} >= 0.2
 Requires:        libglvnd-gles%{?_isa} >= 0.2
 Requires:        libglvnd-glx%{?_isa} >= 0.2
 Requires:        libglvnd-opengl%{?_isa} >= 0.2
+%if 0%{?fedora}
 Requires:        egl-wayland%{?_isa} >= 1.0.0
+%else
+Requires:        egl-wayland >= 1.0.0
+%endif
 Requires:        mesa-libEGL%{?_isa} >= 13.0.3-3
 Requires:        mesa-libGL%{?_isa} >= 13.0.3-3
 Requires:        mesa-libGLES%{?_isa} >= 13.0.3-3
@@ -489,6 +493,9 @@ fi ||:
 %{_libdir}/libnvidia-encode.so
 
 %changelog
+* Fri Dec 14 2018 Leigh Scott <leigh123linux@googlemail.com> - 3:415.23-1
+- Update to 415.23 release
+
 * Mon Dec 10 2018 Nicolas Chauvet <kwizart@gmail.com> - 3:415.22-4
 - Add nvidia_kmodsrc_version macro
 
@@ -783,4 +790,3 @@ fi ||:
 
 * Fri Nov 18 2016 leigh scott <leigh123linux@googlemail.com> - 1:375.20-1
 - Update to 375.20 release
-
